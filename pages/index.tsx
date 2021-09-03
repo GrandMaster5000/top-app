@@ -1,5 +1,4 @@
-import { Button, Htag, Ptag, Tag } from '../components';
-import React from 'react';
+import { Button, Htag, Ptag, Raiting, Tag } from '../components';
 
 
 export default function Home(): JSX.Element{
@@ -16,6 +15,7 @@ export default function Home(): JSX.Element{
       <Tag size='small' color='ghost'>C#</Tag>
       <Tag size='small' color='gray'>PHP</Tag>
       <Tag size='small' href='/' color='primary'>Python</Tag>
+      <Raiting raiting={4} />
     </div>
 
   );
