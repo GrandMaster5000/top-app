@@ -1,4 +1,4 @@
-import { Button, Htag, Ptag } from '../components';
+import { Button, Htag, Ptag, Tag } from '../components';
 import React from 'react';
 
 
@@ -11,6 +11,12 @@ export default function Home(): JSX.Element{
       <Ptag size='big'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem, commodi sequi. Earum nulla debitis excepturi dolore eligendi commodi alias maiores asperiores ducimus eveniet. Velit ab cumque numquam amet laboriosam architecto.</Ptag>
       <Ptag size='middle'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem, commodi sequi. Earum nulla debitis excepturi dolore eligendi commodi alias maiores asperiores ducimus eveniet. Velit ab cumque numquam amet laboriosam architecto.</Ptag>
       <Ptag size='small'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem, commodi sequi. Earum nulla debitis excepturi dolore eligendi commodi alias maiores asperiores ducimus eveniet. Velit ab cumque numquam amet laboriosam architecto.</Ptag>
+      <Tag size='small' color='red'>HHru</Tag>
+      <Tag size='big' color='green'>RabotaRU</Tag>
+      <Tag size='small' color='ghost'>C#</Tag>
+      <Tag size='small' color='gray'>PHP</Tag>
+      <Tag size='small' href='/' color='primary'>Python</Tag>
     </div>
+
   );
 }
