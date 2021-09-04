@@ -5,7 +5,7 @@ import { Header } from './Header/Header';
 import { Footer } from './Footer/Footer';
 
 
-export const Layout = ({ children }: LayoutProps): JSX.Element => {
+const Layout = ({ children }: LayoutProps): JSX.Element => {
     return (
        <>
             <Header/>
@@ -18,4 +18,14 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
             <Footer/>
        </>
     );
+};
+
+export const withLayout = <T extends Record<string, unknown> > (Component: React.FC<T>) => {
+    return function withLayoutComponent(props: T): JSX.Element {
+        return (
+            <Layout>
+                <Component {...props}/>
+            </Layout>
+        );
+    };
 };
