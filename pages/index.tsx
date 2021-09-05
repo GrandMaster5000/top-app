@@ -23,10 +23,7 @@ function Home({menu}: HomeProps): JSX.Element{
       <Tag size='small' color='gray'>PHP</Tag>
       <Tag size='small' href='/' color='primary'>Python</Tag>
       <Raiting raiting={raiting} isEditable={true} setRaiting={setRaiting}/>
-      <ul>
-
-      {menu.map(m => (<li key={m._id.secondCategory}>{m._id.secondCategory}</li>))}  
-      </ul>
+     
     </>
 
   );
