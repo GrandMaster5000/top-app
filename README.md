@@ -2,7 +2,7 @@ Project Name: Top-app
 =====================
 ***Stack:***
 * HTML
-* SCSS
+* CSS
 * TypeScript
 * React
 * Next.js
