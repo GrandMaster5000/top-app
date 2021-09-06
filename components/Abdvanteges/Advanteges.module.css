@@ -1,0 +1,17 @@
+.advantage {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(2, auto);
+    gap: 20px 40px;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.vline {
+    height: 100%;
+    border-left: 1px solid #D2D2D2;
+}
+
+.title {
+    color: var(--black);
+}
