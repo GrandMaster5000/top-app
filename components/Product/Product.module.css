@@ -17,8 +17,23 @@
     height: 70px;
 }
 
+.title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 27px;
+    color: var(--black);
+    align-self: flex-end;
+}
+
 .title, .tags {
     grid-column: titlestart/ middle;
+}
+
+.price , .credit {
+    font-size: 20px;
+    line-height: 27px;
+    color: var(--black);
+    align-self: flex-end;
 }
 
 .price, .priceTitle {
@@ -33,6 +48,16 @@
     grid-column: raitestart / end;
 }
 
+.raiting {
+    align-self: flex-end;
+}
+
+.priceTitle, .creditTitle, .raitingTitle {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 19px;
+}
+
 .hr, .description, .actions {
     grid-column: start/ end;
 }
@@ -45,3 +70,73 @@
     grid-column: middle/ end;
 }
 
+.actions {
+    display: flex;
+    gap: 20px;
+}
+
+.month {
+    font-size: 14px;
+    line-height: 19px;
+}
+
+.oldPrice {
+    margin-left: 5px;
+    text-align: center;
+    padding: 5px 7px;
+}
+
+.categorie {
+    margin-top: 7px;
+}
+
+.advBlock {
+    font-size: 16px;
+    line-height: 22px;
+}
+
+.advTitle {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 22px;
+    margin-bottom: 5px;
+}
+
+.advantages {
+    border-left: 3px solid var(--green);
+    padding-left: 15px;
+    margin-bottom: 20px;
+}
+
+.disadvantages {
+    border-left: 3px solid var(--red);
+    padding-left: 15px;
+}
+
+.description {
+    margin-bottom: 15px;
+}
+
+.characteristic {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    padding-right: 60px;
+    font-size: 16px;
+    align-items: baseline;
+}
+
+.characteristicName {
+    margin-right: 10px;
+    line-height: 32px;
+    font-weight: bold;
+}
+.characteristicValue {
+    margin-left: 10px;
+   font-weight: 500;
+   line-height: 22px;
+}
+
+.characteristicDots {
+    border-bottom: 1px dashed var(--gray-light);
+    margin-bottom: 5px;
+}
