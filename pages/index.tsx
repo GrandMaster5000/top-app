@@ -1,6 +1,6 @@
 import { GetStaticProps } from 'next';
 import { useState } from 'react';
-import { Button, Htag, Input, Ptag, Raiting, Tag } from '../components';
+import { Button, Htag, Input, Ptag, Raiting, Tag, TextArea } from '../components';
 import { withLayout } from '../layout/Layout';
 import axios from 'axios';
 import {MenuItem} from '../interfeces/menu.interface';
@@ -24,6 +24,7 @@ function Home({menu}: HomeProps): JSX.Element{
       <Tag size='small' href='/' color='primary'>Python</Tag>
       <Raiting raiting={raiting} isEditable={true} setRaiting={setRaiting}/>
       <Input placeholder='test'/>
+      <TextArea placeholder='text'/>
     </>
 
   );
