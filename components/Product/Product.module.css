@@ -140,3 +140,136 @@
     border-bottom: 1px dashed var(--gray-light);
     margin-bottom: 5px;
 }
+
+
+@media screen and (max-width: 1320px) {
+    .product {
+        grid-template-columns:70px 30px auto 40px  auto  40px  1fr;
+        grid-template-areas: 
+        "logo .  title title title title title"
+        "logo .  tags tags tags tags tags"
+        "price price price . credit . raiting"
+        "priceTitle priceTitle priceTitle . creditTitle . raitingTitle"
+        "hr hr hr hr hr hr hr"
+        "description description description description description description description"
+        "feature feature feature feature feature feature feature"
+        "advBlock advBlock advBlock advBlock advBlock advBlock advBlock"
+        "hr2 hr2 hr2 hr2 hr2 hr2 hr2"
+        "actions actions actions actions actions actions actions"
+        ;
+    }
+
+    .logo {
+        grid-area: logo;
+        margin-bottom: 20px;
+    }
+    .title {
+        grid-area: title;
+    }
+    .tags {
+        grid-area: tags;
+    }
+    .price {
+        grid-area: price;
+    }
+    .credit {
+        grid-area: credit;
+    }
+    .raiting {
+        grid-area: raiting;
+    }
+    .priceTitle {
+        grid-area: priceTitle;
+    }
+    .creditTitle {
+        grid-area: creditTitle;
+    }
+    .raitingTitle {
+        grid-area: raitingTitle;
+    }
+    .hr {
+        grid-area: hr;
+    }
+    .description {
+        grid-area: description;
+    }
+    .feature {
+        grid-area: feature;
+        margin-bottom: 20px;
+    }
+    .advBlock {
+        grid-area: advBlock;
+    }
+    .hr2 {
+        grid-area: hr2;
+    }
+    .actions {
+        grid-area: actions;
+    }
+}
+
+
+@media screen and (max-width: 640px) {
+    .product {
+        grid-template-columns: 70px 30px 1fr;
+        grid-template-areas:
+            "logo .  title "
+            "logo .  tags "
+            "priceTitle priceTitle price"
+            "creditTitle creditTitle credit"
+            "raitingTitle raitingTitle raiting"
+            "hr hr hr"
+            "description description description"
+            "feature feature feature "
+            "advBlock advBlock advBlock"
+            "hr2 hr2 hr2"
+            "actions actions actions "
+        ;
+    }
+
+     .price {
+        margin-bottom: 10px;
+    }
+
+     .credit {
+        margin-bottom: 10px;
+     }
+
+     .raiting {
+        margin-bottom: 10px;
+     }
+}
+
+@media screen and (max-width: 480px) {
+    .product {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "logo"
+            "title "
+            "tags "
+            "price"
+            "priceTitle"
+            "credit"
+            "creditTitle"
+            "raiting"
+            "raitingTitle"
+            "hr"
+            "description"
+            "feature"
+            "advBlock"
+            "hr2"
+            "actions"
+        ;
+    }
+     .price {
+         margin-top: 10px;
+     }
+
+     .credit {
+         margin-top: 10px;
+     }
+
+     .raiting {
+         margin-top: 10px;
+     }
+}
