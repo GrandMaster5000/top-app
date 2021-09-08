@@ -9,7 +9,6 @@ import { sortReducer } from './sort.reducer';
 export const TopPageComponent = ({page, products, firstCategory}: TopPageComponentProps): JSX.Element => {
     const [{products: sortedProducts, sort}, dispatchSort] = useReducer(sortReducer, {products, sort: SortEnum.Raiting});
 
-    console.log(sortedProducts);
     const setSort = (sort: SortEnum) => {
       dispatchSort({type: sort});  
     };

@@ -4,13 +4,12 @@ import React, { useState } from 'react';
 import { Card } from '../Card/Card';
 import { devlOfNum, priceRu } from '../../helpers/helpers';
 import { Raiting } from '../Raiting/Raiting';
-import { Button, Divider, Ptag, Review, Tag } from '..';
+import { Button, Divider, Form, Ptag, Review, Tag } from '..';
 import Image from 'next/image';
 import classNames from 'classnames';
 
 export const Product = ({product , ...props}: ProductProps): JSX.Element => {
     const [isReviewOpen, setIsReviewOpen] = useState<boolean>(false);
-    console.log(product.reviews);
    return (
         <>
             <Card className={styles.product}>
@@ -81,22 +80,25 @@ export const Product = ({product , ...props}: ProductProps): JSX.Element => {
                 <div className={styles.actions}>
                         <Button appearance='primary'>Узнать подробнее</Button>
                         <Button
-                       onClick={() => product.reviews.length != 0 && setIsReviewOpen(!isReviewOpen)}
+                       onClick={() => setIsReviewOpen(!isReviewOpen)}
                         arrow={isReviewOpen ? 'down' : 'right'}
                         appearance='ghost'>Читать отзывы</Button>
                 </div>
             </Card>
-            {product.reviews.length != 0 && (
 
-                <Card color='blue' className={classNames(styles.reviews, {
-                    [styles.open]: isReviewOpen,
-                    [styles.closed]: !isReviewOpen
-                })}>
-                    {product.reviews.map(r => (
-                        <Review key={r._id} review={r}/>
-                    ))}
-                </Card>
-            )}
+            <Card color='blue' className={classNames(styles.reviews, {
+                [styles.open]: isReviewOpen,
+                [styles.closed]: !isReviewOpen
+            })}>
+                {product.reviews.map(r => (
+                    <React.Fragment key={r._id}>
+                        <Review  review={r}/>
+                        <Divider/> 
+                    </React.Fragment>
+                ))}
+                <Form productId={product._id}/>
+            </Card>
+            
        </>
    );
 };
