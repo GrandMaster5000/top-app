@@ -1,11 +1,11 @@
 import classNames from 'classnames';
-import React from 'react';
+import React, { ForwardedRef, forwardRef } from 'react';
 import { TextAreaProps } from './TextArea.props';
 import styles from './TextArea.module.css';
 
 
-export const TextArea = ({ className, ...props }: TextAreaProps): JSX.Element => {
+export const TextArea = forwardRef(({ className, ...props }: TextAreaProps, ref: ForwardedRef<HTMLTextAreaElement>): JSX.Element => {
     return (
-      <textarea className={classNames(className, styles.textArea)} {...props}/>
+      <textarea className={classNames(className, styles.textArea)} ref={ref} {...props}/>
     );
-};
+});
