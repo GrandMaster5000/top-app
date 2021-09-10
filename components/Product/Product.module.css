@@ -141,6 +141,10 @@
     margin-bottom: 5px;
 }
 
+.raitingTitle a {
+    color: var(--primary);
+}
+
 
 @media screen and (max-width: 1320px) {
     .product {

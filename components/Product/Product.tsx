@@ -1,6 +1,6 @@
 import { ProductProps } from './Product.props';
 import styles from './Product.module.css';
-import React, { useState } from 'react';
+import React, { MouseEvent, useRef, useState } from 'react';
 import { Card } from '../Card/Card';
 import { devlOfNum, priceRu } from '../../helpers/helpers';
 import { Raiting } from '../Raiting/Raiting';
@@ -8,10 +8,20 @@ import { Button, Divider, Form, Ptag, Review, Tag } from '..';
 import Image from 'next/image';
 import classNames from 'classnames';
 
-export const Product = ({product , ...props}: ProductProps): JSX.Element => {
+export const Product = ({product ,className, ...props}: ProductProps): JSX.Element => {
     const [isReviewOpen, setIsReviewOpen] = useState<boolean>(false);
+    const reviewRef = useRef<HTMLDivElement>(null);
+
+    const scrollToReview = () => {
+        setIsReviewOpen(true);
+        reviewRef.current?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    };
+
    return (
-        <>
+        <div className={className} {...props}>
             <Card className={styles.product}>
                 <div className={styles.logo}>
                     <Image 
@@ -31,7 +41,7 @@ export const Product = ({product , ...props}: ProductProps): JSX.Element => {
                     {priceRu(product.credit)}/<span className={styles.month}>мес</span>
                 </div>
                 <div className={styles.raiting}>
-                        <Raiting  raiting={product.reviewAvg ?? product.initialRating}/>
+                        <Raiting  rating={product.reviewAvg ?? product.initialRating}/>
                 </div>
                 <div className={styles.tags}>
                     {product.categories.map(c => <Tag className={styles.categorie} key={c} color='ghost'>{c}</Tag>)}
@@ -43,7 +53,9 @@ export const Product = ({product , ...props}: ProductProps): JSX.Element => {
                     в кредит 
                 </div>
                 <div className={styles.raitingTitle}>
+                   <a href="#ref" onClick={scrollToReview}>
                     {product.reviewCount} {devlOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
+                    </a> 
                 </div>
 
                     <Divider className={styles.hr}/>
@@ -89,7 +101,7 @@ export const Product = ({product , ...props}: ProductProps): JSX.Element => {
             <Card color='blue' className={classNames(styles.reviews, {
                 [styles.open]: isReviewOpen,
                 [styles.closed]: !isReviewOpen
-            })}>
+            })} ref={reviewRef}>
                 {product.reviews.map(r => (
                     <React.Fragment key={r._id}>
                         <Review  review={r}/>
@@ -99,6 +111,6 @@ export const Product = ({product , ...props}: ProductProps): JSX.Element => {
                 <Form productId={product._id}/>
             </Card>
             
-       </>
+       </div>
    );
 };

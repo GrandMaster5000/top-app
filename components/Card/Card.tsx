@@ -1,17 +1,18 @@
 import classNames from 'classnames';
-import React from 'react';
+import React, { ForwardedRef, forwardRef } from 'react';
 import { CardProps } from './Card.props';
 import styles from './Card.module.css';
 
 
-export const Card = ({ children, color='white', className, ...props }: CardProps): JSX.Element => {
+export const Card = forwardRef(({ children, color='white', className, ...props }: CardProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
     return (
         <div
             className={classNames(styles.card, className, {
               [styles.blue]: color == 'blue'
             })}
-            {...props}>
+            {...props}
+            ref={ref}>
                 {children}
         </div>
     );
-};
+});
