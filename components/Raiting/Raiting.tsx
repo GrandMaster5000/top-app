@@ -5,7 +5,7 @@ import styles from './Raiting.module.css';
 import StarIcon from './star.svg';
 
 
-export const Raiting = forwardRef(({error,isEditable = false, raiting, setRaiting, ...props}: RaitingProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
+export const Raiting = forwardRef(({error,isEditable = false, rating, setRaiting, ...props}: RaitingProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
     const [raitingArray, setRaitingArray] = useState<JSX.Element[]>(new Array(5).fill(<></>));
 
 
@@ -17,7 +17,7 @@ export const Raiting = forwardRef(({error,isEditable = false, raiting, setRaitin
                 [styles.editable]: isEditable
             })}
             onMouseEnter={() => changeDisplay(i + 1)}
-            onMouseLeave={() => changeDisplay(raiting)}
+            onMouseLeave={() => changeDisplay(rating)}
             onClick={() => onClick(i + 1)}>
                 <StarIcon
                 tabIndex={isEditable ? 0 : -1}
@@ -52,8 +52,8 @@ export const Raiting = forwardRef(({error,isEditable = false, raiting, setRaitin
     };
 
     useEffect(() => {
-        constructRaiting(raiting);
-    }, [raiting]);
+        constructRaiting(rating);
+    }, [rating]);
 
     return (
         <div className={classNames(styles.raitingWrapper, {

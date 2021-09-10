@@ -1,18 +1,40 @@
 import classNames from 'classnames';
-import React from 'react';
+import React, { useState } from 'react';
 import { FormProps } from './Form.props';
 import styles from './Form.module.css';
 import { Button, Input, Raiting, TextArea } from '..';
 import SuccessIcon from './succesSubmit.svg';
 import {useForm ,Controller} from 'react-hook-form';
-import { IForm } from './Form.interface';
+import { IForm, IReviewSentResponse } from './Form.interface';
+import axios from 'axios';
+import { API } from '../../helpers/api';
 
 
 export const Form = ({productId, className, ...props }: FormProps): JSX.Element => {
-    const {register, control, handleSubmit, formState: {errors}} = useForm<IForm>();
+    const {register, control, handleSubmit, formState: {errors}, reset} = useForm<IForm>();
+    const [isSuccess, setIsSuccess] = useState<boolean>(false);
+    const [error, setError] = useState<string>();
 
-    const onSubmit = (data: IForm) => {
-        console.log(data);
+    const onSubmit = async (formData: IForm) => {
+        try {
+            const {data} = await axios.post<IReviewSentResponse>(API.review.createDemo, {
+                ...formData,
+                productId
+            });
+
+            if(data.message) {
+                setIsSuccess(true);
+                reset();
+            } else {
+                setError('Что-то пошло не так...');
+                reset();
+            }
+        } catch(e) {
+            if(e instanceof Error) {
+                setError(e.message);
+                reset();
+            }
+        }
     };
 
     return (
@@ -31,15 +53,15 @@ export const Form = ({productId, className, ...props }: FormProps): JSX.Element 
                 <span>Оценка:</span>
                 <Controller
                 control={control}
-                name='raiting'
+                name='rating'
                 rules={{required: {value: true, message: 'Укажите рейтинг' }}}
                 render={
                     ({field}) => (
                         <Raiting 
-                        raiting={field.value} 
+                        rating={field.value} 
                         isEditable 
                         setRaiting={field.onChange}
-                        error={errors.raiting}
+                        error={errors.rating}
                         ref={field.ref} />
                     )
                 }
@@ -56,15 +78,19 @@ export const Form = ({productId, className, ...props }: FormProps): JSX.Element 
             </div>
             </div>
 
-            <div className={styles.success}>
+            {isSuccess && <div className={styles.success}>
                 <div className={styles.successTitle}>
                 Ваш отзыв отправлен
                 </div>
                 <div className={styles.successDescr}>
                     Спасибо, ваш отзыв будет опубликован после проверки.
                 </div>
-                <SuccessIcon className={styles.close}/>
-            </div>
+                <SuccessIcon onClick={() => setIsSuccess(false)} className={styles.close}/>
+            </div>}
+            {error && <div className={styles.error}>
+                Что-то пошло не так, попробуйте обновить страницу
+                <SuccessIcon onClick={() => setError(undefined)} className={styles.close}/>
+            </div>}
         </form>
     );
 };

@@ -3,7 +3,7 @@ import { HTMLAttributes, DetailedHTMLProps } from 'react';
 
 export interface RaitingProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>{
     isEditable?: boolean;
-    raiting: number;
+    rating: number;
     error?: FieldError
     setRaiting?: (raiting: number) => void
 }

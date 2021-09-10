@@ -40,6 +40,14 @@
     margin-top: 20px;
 }
 
+.error {
+     background-color: var(--red-light);
+     padding: 20px;
+     position: relative;
+     border-radius: 5px;
+     margin-top: 20px;
+}
+
 .successTitle {
     font-weight: bold;
 }
@@ -49,6 +57,10 @@
     right: 20px;
     top: 15px;
     cursor: pointer;
+}
+
+.error .close path {
+    stroke: var(--red);
 }
 
 @media screen and (max-width: 1115px) {
