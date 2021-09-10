@@ -5,7 +5,7 @@ import styles from './Raiting.module.css';
 import StarIcon from './star.svg';
 
 
-export const Raiting = forwardRef(({isEditable = false, raiting, setRaiting, ...props}: RaitingProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
+export const Raiting = forwardRef(({error,isEditable = false, raiting, setRaiting, ...props}: RaitingProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
     const [raitingArray, setRaitingArray] = useState<JSX.Element[]>(new Array(5).fill(<></>));
 
 
@@ -56,8 +56,11 @@ export const Raiting = forwardRef(({isEditable = false, raiting, setRaiting, ...
     }, [raiting]);
 
     return (
-        <div {...props} ref={ref}>
+        <div className={classNames(styles.raitingWrapper, {
+            [styles.error]: error
+        })} {...props} ref={ref}>
             {raitingArray.map((r, i) => (<span key={i}>{r}</span>))}
+            {error && <span className={styles.errorMessage}>{error.message}</span>}
         </div>
     );
 });

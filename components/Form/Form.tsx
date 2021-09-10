@@ -9,7 +9,7 @@ import { IForm } from './Form.interface';
 
 
 export const Form = ({productId, className, ...props }: FormProps): JSX.Element => {
-    const {register, control, handleSubmit} = useForm<IForm>();
+    const {register, control, handleSubmit, formState: {errors}} = useForm<IForm>();
 
     const onSubmit = (data: IForm) => {
         console.log(data);
@@ -18,25 +18,38 @@ export const Form = ({productId, className, ...props }: FormProps): JSX.Element 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className={classNames(styles.reviewForm, className)} {...props}>
-            <Input {...register('name')} placeholder='Имя'/>
-            <Input {...register('title')} placeholder='Заголовок отзыва' className={styles.titleInput}/>
+            <Input 
+            {...register('name', {required: { value: true, message: 'Заполните имя'}})} 
+            placeholder='Имя'
+            error={errors.name}/>
+            <Input 
+            {...register('title', { required: { value: true, message: 'Заполните заголовок' } })}
+            placeholder='Заголовок отзыва' 
+            className={styles.titleInput}
+            error={errors.title}/>
             <div className={styles.raiting}>
                 <span>Оценка:</span>
                 <Controller
                 control={control}
                 name='raiting'
+                rules={{required: {value: true, message: 'Укажите рейтинг' }}}
                 render={
                     ({field}) => (
                         <Raiting 
                         raiting={field.value} 
                         isEditable 
                         setRaiting={field.onChange}
+                        error={errors.raiting}
                         ref={field.ref} />
                     )
                 }
                 />
             </div>
-                <TextArea {...register('description')} placeholder='Текст отзыва' className={styles.descr}/>
+                <TextArea 
+                {...register('description', { required: { value: true, message: 'Заполните описание' }})}
+                placeholder='Текст отзыва' 
+                className={styles.descr}
+                error={errors.description}/>
             <div className={styles.submit}>
                     <Button className={styles.submitBtn} appearance='primary'>Отправить</Button>
                     <span>* Перед публикацией отзыв пройдет предварительную модерацию и проверку</span>

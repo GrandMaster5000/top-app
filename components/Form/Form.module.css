@@ -7,7 +7,7 @@
     align-items: center;
 }
 
-.descr {
+.descr  {
     grid-column: start/end;
 }
 
