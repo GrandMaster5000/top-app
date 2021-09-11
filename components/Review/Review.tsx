@@ -23,7 +23,7 @@ export const Review = ({ review , className , ...props }: ReviewProps): JSX.Elem
                {format(new Date(createdAt), 'dd MMMM yyyy', {locale: ru})}
             </div>
             <div className={styles.raiting}>
-                <Raiting raiting={rating}/>
+                <Raiting rating={rating}/>
             </div>
             <div className={styles.description}>
                 {description}
