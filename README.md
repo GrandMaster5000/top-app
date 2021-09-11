@@ -6,4 +6,5 @@ Project Name: Top-app
 * TypeScript
 * React
 * Next.js
-
+* React useForm
+* Framer Motion
