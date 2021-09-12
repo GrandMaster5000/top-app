@@ -47,22 +47,30 @@ export const Product = motion(forwardRef(({product ,className, ...props}: Produc
                     {product.title}
                 </div>
                 <div className={styles.price}>
-                    {priceRu(product.price)}
-                    {product.oldPrice && <Tag className={styles.oldPrice} color='green'>{priceRu(product.price - product.oldPrice)}</Tag>}
+                    <span>
+                       <span className='visualyHidden'>цена</span>
+                        {priceRu(product.price)}
+                    </span>
+                    {product.oldPrice && <Tag className={styles.oldPrice} color='green'>
+                       <span className='visualyHidden'>скидка</span>
+                        {priceRu(product.price - product.oldPrice)}
+                        </Tag>}
                 </div>
                 <div className={styles.credit}>
+                    <span className='visualyHidden'>кредит</span>
                     {priceRu(product.credit)}/<span className={styles.month}>мес</span>
                 </div>
                 <div className={styles.raiting}>
-                        <Raiting  rating={product.reviewAvg ?? product.initialRating}/>
+                   <span className='visualyHidden'>{'рейтинг' + (product.reviewAvg ?? product.initialRating)}</span>
+                    <Raiting  rating={product.reviewAvg ?? product.initialRating}/>
                 </div>
                 <div className={styles.tags}>
                     {product.categories.map(c => <Tag className={styles.categorie} key={c} color='ghost'>{c}</Tag>)}
                 </div>
-                <div className={styles.priceTitle}>
+                <div aria-hidden={true} className={styles.priceTitle}>
                     цена
                 </div>
-                <div className={styles.creditTitle}>
+                <div aria-hidden={true} className={styles.creditTitle}>
                     в кредит 
                 </div>
                 <div className={styles.raitingTitle}>
