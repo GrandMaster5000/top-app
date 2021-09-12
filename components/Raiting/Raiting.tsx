@@ -1,13 +1,26 @@
 import classNames from 'classnames';
-import React, { useEffect, useState, KeyboardEvent, forwardRef, ForwardedRef } from 'react';
+import React, { useEffect, useState, KeyboardEvent, forwardRef, ForwardedRef, useRef } from 'react';
 import { RaitingProps } from './Raiting.props';
 import styles from './Raiting.module.css';
 import StarIcon from './star.svg';
 
 
-export const Raiting = forwardRef(({error,isEditable = false, rating, setRaiting, ...props}: RaitingProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
+export const Raiting = forwardRef(({error,isEditable = false, rating, setRaiting, tabIndex, ...props}: RaitingProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
     const [raitingArray, setRaitingArray] = useState<JSX.Element[]>(new Array(5).fill(<></>));
+    const ratingArrayRef = useRef<(HTMLSpanElement | null)[]>([]);
 
+    const computeFocus = (rating: number, i: number): number => {
+        if(!isEditable) {
+            return -1;
+        }
+        if(!rating && i == 0) {
+            return tabIndex ?? 0;
+        } 
+        if(rating == i + 1) {
+            return tabIndex ?? 0;
+        }
+        return -1;
+    };
 
     const constructRaiting = (currentRaiting: number) => {
         const upbatedArray = raitingArray.map((elem: JSX.Element, i: number) => (
@@ -18,11 +31,12 @@ export const Raiting = forwardRef(({error,isEditable = false, rating, setRaiting
             })}
             onMouseEnter={() => changeDisplay(i + 1)}
             onMouseLeave={() => changeDisplay(rating)}
-            onClick={() => onClick(i + 1)}>
-                <StarIcon
-                tabIndex={isEditable ? 0 : -1}
-                onKeyDown={(e: KeyboardEvent<SVGAElement>) => isEditable && handleSpace(i + 1, e)}
-                />
+            tabIndex={computeFocus(rating, i)}
+            onKeyDown={handleKey}
+            onClick={() => onClick(i + 1)}
+            ref={r => ratingArrayRef.current?.push(r)}
+            >
+                <StarIcon/>
             </span>
         ));
         setRaitingArray(upbatedArray);
@@ -43,17 +57,32 @@ export const Raiting = forwardRef(({error,isEditable = false, rating, setRaiting
         setRaiting(i);
     };
 
-    const handleSpace = (i: number, e: KeyboardEvent<SVGAElement>) => {
-        if(e.code != 'Space' || !setRaiting) {
+    const handleKey = (e: KeyboardEvent) => {
+        if(!isEditable || !setRaiting) {
             return;
         }
+        if(e.code == 'ArrowRight' || e.code == 'ArrowUp') {
+            if(!rating) {
+                setRaiting(1);
+            } else if(rating < raitingArray.length) {
+                e.preventDefault();
+                setRaiting(rating + 1);
+            }
 
-        setRaiting(i);
+            ratingArrayRef.current[rating]?.focus();
+        }
+        if(e.code == 'ArrowLeft' || e.code == 'ArrowDown') {
+            e.preventDefault();
+            if(rating > 0) {
+                setRaiting(rating - 1);
+            }
+            ratingArrayRef.current[rating - 2]?.focus();
+        }
     };
 
     useEffect(() => {
         constructRaiting(rating);
-    }, [rating]);
+    }, [rating, tabIndex]);
 
     return (
         <div className={classNames(styles.raitingWrapper, {
