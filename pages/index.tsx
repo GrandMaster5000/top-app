@@ -23,7 +23,7 @@ function Home({menu}: HomeProps): JSX.Element{
       <Tag size='small' color='ghost'>C#</Tag>
       <Tag size='small' color='gray'>PHP</Tag>
       <Tag size='small' href='/' color='primary'>Python</Tag>
-      <Raiting raiting={raiting} isEditable={true} setRaiting={setRaiting}/>
+      <Raiting rating={raiting} isEditable={true} setRaiting={setRaiting}/>
       <Input placeholder='test'/>
       <TextArea placeholder='text'/>
     </>
