@@ -3,3 +3,7 @@
     align-content: flex-start;
     gap: 20px;
 }
+
+.logo {
+    cursor: pointer;
+}

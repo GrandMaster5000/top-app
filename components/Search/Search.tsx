@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { useState } from 'react';
+import React, { KeyboardEvent, useState } from 'react';
 import { SearchProps } from './Search.props';
 import styles from './Search.module.css';
 import SearchIcon from './search.svg';
@@ -22,7 +22,7 @@ export const Search = ({ className, ...props }: SearchProps): JSX.Element => {
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {
-        if(e.key == 'Enter') {
+        if (e.key == 'Enter') {
             goToSearch();
         }
     };
@@ -38,7 +38,8 @@ export const Search = ({ className, ...props }: SearchProps): JSX.Element => {
             <Button
             appearance='primary'
             className={styles.button}
-            onClick={goToSearch}>
+            onClick={goToSearch}
+            aria-label='Искать по сайту'>
                 <SearchIcon/>
             </Button>
         </div>
