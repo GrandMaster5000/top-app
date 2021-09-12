@@ -57,6 +57,8 @@
     right: 20px;
     top: 15px;
     cursor: pointer;
+    border: none;
+    background: none;
 }
 
 .error .close path {

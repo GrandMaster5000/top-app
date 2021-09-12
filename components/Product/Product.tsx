@@ -113,9 +113,11 @@ export const Product = motion(forwardRef(({product ,className, ...props}: Produc
                 <div className={styles.actions}>
                         <Button appearance='primary'>Узнать подробнее</Button>
                         <Button
-                       onClick={() => setIsReviewOpen(!isReviewOpen)}
+                        onClick={() => setIsReviewOpen(!isReviewOpen)}
                         arrow={isReviewOpen ? 'down' : 'right'}
-                        appearance='ghost'>Читать отзывы</Button>
+                        appearance='ghost'
+                        aria-expanded={isReviewOpen}
+                        >Читать отзывы</Button>
                 </div>
             </Card>
 
