@@ -1,90 +1,94 @@
 .reviewForm {
-    font-size: 14px;
-    line-height: 24px;
-    display: grid;
-    grid-template-columns: [start] auto 1fr auto [end];
-    gap: 20px 30px;
-    align-items: center;
+	display: grid;
+	align-items: center;
+
+	font-size: 14px;
+	line-height: 24px;
+	grid-template-columns: [start] auto 1fr auto [end];
+	gap: 20px 30px;
 }
 
-.descr  {
-    grid-column: start/end;
+.descr {
+	grid-column: start/end;
 }
 
 .submit {
-    grid-column: start/end;
-    display: flex;
-    gap: 10px;
+	grid-column: start/end;
+
+	display: flex;
+	gap: 10px;
 }
 
 .titleInput {
-    justify-self: left;
+	justify-self: left;
 }
 
 .raiting {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 20px;
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 20px;
 }
 
 .submitBtn {
-    width: 148px;
-    height: 35px;
+	width: 148px;
+	height: 35px;
 }
 
 .success {
-    background-color: var(--green-light);
-    padding: 20px;
-    position: relative;
-    border-radius: 5px;
-    margin-top: 20px;
+	position: relative;
+
+	margin-top: 20px;
+	padding: 20px;
+
+	border-radius: 5px;
+	background-color: var(--green-light);
 }
 
 .error {
-     background-color: var(--red-light);
-     padding: 20px;
-     position: relative;
-     border-radius: 5px;
-     margin-top: 20px;
+	position: relative;
+
+	margin-top: 20px;
+	padding: 20px;
+
+	border-radius: 5px;
+	background-color: var(--red-light);
 }
 
 .successTitle {
-    font-weight: bold;
+	font-weight: bold;
 }
 
 .close {
-    position: absolute;
-    right: 20px;
-    top: 15px;
-    cursor: pointer;
-    border: none;
-    background: none;
+	position: absolute;
+	top: 15px;
+	right: 20px;
+
+	cursor: pointer;
+
+	border: none;
+	background: none;
 }
 
 .error .close path {
-    stroke: var(--red);
+	stroke: var(--red);
 }
 
 @media screen and (max-width: 1115px) {
-    .reviewForm {
-        grid-template-columns: [start] 1fr 1fr  [end];
-    }
+	.reviewForm {
+		grid-template-columns: [start] 1fr 1fr  [end];
+	}
 
-    .titleInput {
-        justify-self: unset;
-    }
+	.titleInput {
+		justify-self: unset;
+	}
 
-    .raiting {
-        grid-column: start/end ;
-    }
-
-    
+	.raiting {
+		grid-column: start/end;
+	}
 }
 
 @media screen and (max-width: 640px) {
-    .reviewForm {
-        grid-template-columns:[start]1fr[end];
-    }
-
-    
+	.reviewForm {
+		grid-template-columns: [start]1fr[end];
+	}
 }

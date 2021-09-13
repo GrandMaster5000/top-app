@@ -1,30 +1,33 @@
 .filled svg {
-    fill: var(--primary);
+	fill: var(--primary);
 }
 
 .star {
-    display: inline-block;
+	display: inline-block;
 }
 
 .star svg {
-    margin-right: 5px;
+	margin-right: 5px;
 }
 
 .editable {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .error svg {
-    stroke: var(--red);
-} 
+	stroke: var(--red);
+}
 
 .raitingWrapper {
-    position: relative;
+	position: relative;
 }
+
 .errorMessage {
-    position: absolute;
-    bottom: -20px;
-    left: 0;
-    color: var(--red);
-    width: max-content;
+	position: absolute;
+	bottom: -20px;
+	left: 0;
+
+	width: max-content;
+
+	color: var(--red);
 }
