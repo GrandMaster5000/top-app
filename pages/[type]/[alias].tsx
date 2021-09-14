@@ -73,7 +73,7 @@ export const getStaticProps: GetStaticProps<TopPageProps> = async ({ params }: G
         }
 
         const { data: page } = await axios.get<TopPageModel>(API.topPage.byAlias +  params.alias);
-    
+        console.log(page.category);
         const { data: products } = await axios.post<ProductModel[]>(API.product.find, {
             category: page.category,
             limit: 10

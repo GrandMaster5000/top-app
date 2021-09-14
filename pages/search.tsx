@@ -4,12 +4,13 @@ import React from 'react';
 import { MenuItem } from '../interfeces/menu.interface';
 import { withLayout } from '../layout/Layout';
 import {API} from '../helpers/api';
+import { SearchPageComponent } from '../page-components';
 
-function Search(): JSX.Element {
+function Search({ menu }: HomeProps): JSX.Element {
 
     return (
         <>
-            Search
+            <SearchPageComponent menu={menu} />
         </>
     );
 }

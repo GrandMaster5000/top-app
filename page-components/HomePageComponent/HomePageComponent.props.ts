@@ -1,4 +1,4 @@
-import { MenuItem } from './../../interfeces/menu.interface';
+import { MenuItem } from '../../interfeces/menu.interface';
 import { TopLevelCategory } from '../../interfeces/page.interface';
 
 export interface HomePageComponentProps {

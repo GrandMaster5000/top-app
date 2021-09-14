@@ -1,0 +1,88 @@
+.logoWrapper {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 40px;
+
+    margin-bottom: 40px;
+}
+
+.logo {
+    display: grid;
+    align-content: center;
+    justify-content: center;
+
+    width: 60px;
+    height: 60px;
+
+    border-radius: 5px;
+    background: var(--primary);
+    -moz-box-pack: center;
+
+}
+
+.logo svg {
+    width: 39px;
+    height: 33px;
+    fill: var(--white);
+}
+
+.logoTitle {
+    margin: 0;
+
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 68px;
+}
+
+.countPage {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+}
+
+.cardWrapper  {
+    display: grid;
+    gap: 30px;
+}
+
+.card {
+    display: grid;
+    grid-template-columns: [start] auto [tagstart] auto [tagend] 1fr [btnstart] auto [end] ;
+    padding: 20px;
+}
+
+.courseTitle {
+    grid-column: start/tagstart;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 29px;
+}
+
+.courseTag {
+    grid-column: tagstart/tagend;
+    margin-left: 10px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnCourse {
+    grid-column: btnstart/end;
+}
+
+@media (max-width: 540px) {
+   .card {
+       grid-template-columns: [start] auto [tagend] auto [btnstart] 85px [end];
+       gap: 10px 0;
+    }
+    .courseTitle {
+        grid-column: start/end;
+    }
+    .courseTag {
+        grid-column: start/tagend;
+        padding: 10px;
+    }
+    .btnCourse {
+        grid-column: btnstart/end;
+    }
+}

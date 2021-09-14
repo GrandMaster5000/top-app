@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { KeyboardEvent, useState } from 'react';
+import React, { FormEvent, useState} from 'react';
 import { SearchProps } from './Search.props';
 import styles from './Search.module.css';
 import SearchIcon from './search.svg';
@@ -12,7 +12,8 @@ export const Search = ({ className, ...props }: SearchProps): JSX.Element => {
     const [search, setSearch] = useState<string>('');
     const router = useRouter();
 
-    const goToSearch = () => {
+    const goToSearch = (e: FormEvent) => {
+        e.preventDefault();
         router.push({
             pathname: '/search',
             query: {
@@ -21,24 +22,18 @@ export const Search = ({ className, ...props }: SearchProps): JSX.Element => {
         });
     };
 
-    const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key == 'Enter') {
-            goToSearch();
-        }
-    };
     return (
-        <form className={classNames(className , styles.search)} {...props} role='search'>
+        <form onSubmit={goToSearch} className={classNames(className , styles.search)} {...props} role='search'>
             <Input
             placeholder='Поиск...'
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            onKeyDown={handleKeyDown}
             className={styles.input}
             />
             <Button
             appearance='primary'
             className={styles.button}
-            onClick={goToSearch}
+            type='submit'
             aria-label='Искать по сайту'>
                 <SearchIcon/>
             </Button>

@@ -16,8 +16,6 @@ export const Menu = (): JSX.Element => {
     const [announce, setAnnounce] = useState<'closed' | 'opened' | undefined>();
     const shouldReduceMotion = useReducedMotion();
 
-    console.log(menu);
-
     const variants = {
         visible: {
             marginBottom: 20,
